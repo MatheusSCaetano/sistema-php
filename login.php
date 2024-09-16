@@ -4,7 +4,7 @@ include("conexao.php");
 $erro = [];
 
 if (isset($_POST['email']) && strlen($_POST['email']) > 0) {
-    if (!isset($_SESSION))//start naSESSAO
+    if (!isset($_SESSION)) //start naSESSAO
         session_start();  //session para criar variaveis que poderao ser utilizadas em todas as paginas do site
 
     $_SESSION['email'] = $mysqli->escape_string($_POST['email']); // escape_string -> limpa o dado de possiveis ataques
@@ -23,7 +23,7 @@ if (isset($_POST['email']) && strlen($_POST['email']) > 0) {
         $erro[] = "Este e-mail não está cadastrado";
     } else {
 
-        if ($dado['senha'] == $_SESSION['senha'] ) { //se a senha do resultado for igual a senha que o user digotou
+        if ($dado['senha'] == $_SESSION['senha']) { //se a senha do resultado for igual a senha que o user digotou
 
             $_SESSION['usuario'] = $dado['codigo']; //SESSION USUARIO INDICA O LOGIN 
 
@@ -38,45 +38,117 @@ if (isset($_POST['email']) && strlen($_POST['email']) > 0) {
 }
 
 ?>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #D6C9B4;
+        flex-direction: column;
+        display: block;
+    }
+
+    header {
+        text-decoration: none;
+
+    }
+
+    .menu {
+        width: 100%;
+        display: flex;
+        text-decoration: none;
+
+    }
+
+    .logo-login img {
+        width: 100px;
+    }
+
+    .logo-login {
+        width: 50%;
+    }
+
+    .menu-items {
+        text-decoration: none;
+        padding: 10;
+        margin-left: 90;
+    }
+
+    .menu-items u {
+        display: flex;
+        text-decoration: none;
+
+    }
+
+    .menu-items a {
+        text-decoration: none;
+        padding: 10;
+
+    }
+
+
+    form {
+
+        display: flex;
+        width: 100%;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    form p {
+        margin: 10;
+        padding: 5;
+        font-weight: bold;
+        border: solid 2px black;
+        border-radius: 5px;
+    }
+
+    form p a {
+        text-decoration: none;
+    }
+
+    input {
+        display: block;
+        margin: 10px;
+        width: 25%;
+        text-align: center;
+        border: black solid 2px;
+        border-radius: 5px;
+    }
+
+    a {
+        color: black;
+    }
+</style>
+
+
 
 <html>
 
-<head></head>
+<head>
+    <header>
+        <div class="menu">
+            <div class="logo-login"><img src="./images/logo.png"></div>
+
+            <div class="menu-items">
+                <u>
+                    <a href="login.php">HOME</a>
+                    <a href="cadastro.php">CADASTRE-SE</a>
+                    <a href="">CONTATO</a>
+
+                </u>
+            </div>
+
+        </div>
+
+    </header>
+</head>
 
 <body>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            background-color: blueviolet;
-            flex-direction: column;
-            display: block;
-        }
-
-        form {
-            display: flex;
-            width: 100%;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        input {
-            display: block;
-            margin: 10px;
-            width: 25%;
-            text-align: center;
-            border: black solid 2px;
-            border-radius: 5px;
-        }
-
-        a {
-            color: black;
-        }
-    </style>
 
     <?php
 
@@ -88,11 +160,13 @@ if (isset($_POST['email']) && strlen($_POST['email']) > 0) {
 
 
     ?>
+
     <form method="POST" action="">
-        <input value="<?php echo $_SESSION['email']; ?>" type="text" name="email" placeholder="Digite seu e-mail">
+        <input value="" type="text" name="email" placeholder="Digite seu e-mail">
         <input type="password" name="senha" placeholder="Digite sua senha">
-        <p><a href="">Esqueceu sua senha?</a></p>
         <input value="Entrar" type="submit">
+        <p><a href="esqueceu.php">Esqueceu sua senha?</a></p>
+        <p><a href="cadastro.php">Cadastre-se</a></p>
     </form>
 
 
